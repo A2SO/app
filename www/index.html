@@ -1,49 +1,410 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <meta name="theme-color" content="#2196F3">
+    <title>Material UI One Page Theme</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CSS  -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet" >
+    <link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" >
+    <script src="js/modernizr.js"></script> <!-- Modernizr -->
+     <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+ <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+         <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/init.js"></script>
+</head>
+<body id="top" class="scrollspy">
+
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
+</div>
+ <div class="navbar-fixed ">
+    <nav id="nav_f" class="light-blue darken-1  z-depth-2" role="navigation">
+        <div class="container ">
+            <div class="nav-wrapper">
+                <a id="logo-container" href="#top" class="brand-logo">
+                <img class="responsive-img" src="img/logo2.png"> </a>
+            <ul id="nav-mobile" class="right side-nav">
+                <div class="col s12 m4 l3">
+                 <img class="responsive-img" src="img/logo2.png"> 
+                </div>
+                <li><a href="#top">Inicio</a></li>
+                <li><a href="#quienes">Quienes Somos</a></li>
+                <li><a href="#team">Healthy Help App</a></li>
+                <li><a href="#App">Politicas de Privacidad </a></li>
+                <li><a href="#pie">Mas..</a></li>
+            </ul><a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                        </ul><a href="#modal5"  class="collapse modal-trigger waves-effect waves-light  right"><i class=" large  mdi-editor-insert-comment right"></i></a>
+
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+    </nav>
+</div>
+
+<script>
+        $(function() {
+            $("#guardar").click(function() {
+                var fnombre = $("#nombre").val();
+                var fcorreo = $("#correo").val();
+                var fcomentario = $("#comentario").val();
+                
+                
+                $("#nombre").val(" ");
+                $("#correo").val(" ");
+                $("#comentario").val(" ");
+                
+                 $.ajax({type: 'GET', 
+                        url: "http://a2soft.hol.es/index.php",
+                        data: ({nombre: fnombre, correo: fcorreo,comentario:fcomentario}),
+                      success: Enviamos
+                    });
+                
+                });
+                
+                function Enviamos(data){       
+                   // alert(data+"Reporte enviado");
+                    $.mobile.pageContainer( "#top", { transition: "slideup", role:"dialog"});
+
+                }
+            
+            });
+        </script>
+</script>
+
+
+ <!-- Modal Structure -->
+  <div id="modal5" class="modal">
+    <div class="modal-content">
+   <div class="row">
+   
+    <div data-role="fieldcontain">
+                      <label for="nombre">Nombre:</label>
+                      <input type="text" name="nombre" id="nombre" value=""  />
+               </div>
+               <div data-role="fieldcontain">
+                      <label for="correo">correo:</label>
+                     <textarea cols="40" rows="8"  name="correo" id="correo" value=""  /></textarea>
+               </div>
+
+                 <div data-role="fieldcontain">
+                      <label for="comentario">correo:</label>
+                     <textarea cols="40" rows="8"  name="comentario" id="comentario" value=""  /></textarea>
+               </div>
+
+             
+               <button type="button" data-theme="a" id="guardar">Enviar</button>
+
+
+  </div>
+        
+    </div>
+    <div class="modal-footer">
+      <a href="#top" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+<!--Hero-->
+<div class="section no-pad-bot" id="inicio">
+    <div class=" "  >
+          <div class="slider">
+    <ul class="slides" >
+      <li>
+        <img src="img/bg1.jpg"  style="height: 100%;" > <!-- random image -->
+        <div class="caption center-align">
+
+          <h3>This is our big Tagline!</h3>
+          <h5 class="light grey-text text-lighten-3" >Here's our small slogan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="img/bg2.png"   > <!-- random image -->
+        <div class="caption left-align">
+          <h3>Left Aligned Caption</h3>
+          <h5 class="light grey-text text-lighten-3 ">Here's our small slogan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="img/bg1.jpg"> <!-- random image -->
+        <div class="caption right-align">
+          <h3>Right Aligned Caption</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+      <li>
+        <img src="img/bg4.png"  style=""  > <!-- random image -->
+        <div class="caption center-align">
+          <h3>This is our big Tagline!</h3>
+          <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+        </div>
+      </li>
+    </ul>
+  </div>
+    </div>
+       
+</div>
+
+
+
+<div  class="card green accent-4 z-depth-2">      
+      <div class="row ">
+      <div class="col  s4 ">
+      <a class="btn-floating btn-large waves-effect waves-light red z-depth-2"><i class="fa fa-twitter"></i>
+
+</a>
+      <h6>Siguenos en Twitter</h6>
+      </div>
+      <div class="col s4 ">
+      <a class="btn-floating btn-large waves-effect waves-light red z-depth-2"><i class="fa fa-facebook"></i></a>
+      <h6>Siguenos en Facebook</h6>
+      </div>
+      <div class="col  s4">
+      <a class="btn-floating btn-large waves-effect waves-light red z-depth-2 "><i class="fa fa-google-plus"></i></a>
+      <h6>Siguenos en Google +</h6> </div>
+     </div>
+</div>
+
+
+<br><br><br><br><br><br  >
+    <div class="card-panel  green accent-4 z-depth-2">      
+      <h4 class="center-align">Quienes Somos</h4>
+</div>
+<br>
+
+<!--Work-->
+<div  id="quienes"  class=" section scrollspy " >
+    <div class="container">
+
+
+
+        
+    </div>
+</div>
+<div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="img/imagen5.jpg">
+    </div>
+    <div class="card-content">
+        <ul class="collapsible popout" data-collapsible="accordion">
+
+    <li>
+        <div class="collapsible-header"><i class="mdi-image-filter-drama"></i>Misión</div>
+        <div class="collapsible-body"><p>Brindar a nuestros usuarios la comodidad, el aprendizaje, la información y diversión en los juegos de una manera interactiva a través de su dispositivo móvil Android, con la finalidad de generar un hábito del buen comer en los niños.</p></div>
+    </li>
+    <li>
+        <div class="collapsible-header"><i class="mdi-maps-place"></i>Vision </div>
+        <div class="collapsible-body"><p>Ser una empresa reconocida a nivel regional en el desarrollo de juegos interactivos que ayuden a los niños a conocer los alimentos saludables que se deben consumir para evitar problemas de salud y sobrepeso.</p></div>
+    </li>
+    <li>
+        <div class="collapsible-header"><i class="mdi-social-whatshot"></i>Valores</div>
+        <div class="collapsible-body"><pre>
+        
+        <i class="material-icons">&#xE83A;</i> Responsabilidad 
+        <i class="material-icons">&#xE83A;</i> Calidad
+        <i class="material-icons">&#xE83A;</i> Originalidad
+        <i class="material-icons">&#xE83A;</i> Respeto
+        <i class="material-icons">&#xE83A;</i> Libertad
+        <i class="material-icons">&#xE83A;</i> Seguridad
+    </pre>
+    </div>
+    </li>
+</ul>
+    </div>
+   
+  </div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<br><br><br><br><br><br>
+    <div class="card-panel   green accent-4">      
+      <h4 class="center-align">Healthy Help App </h4>
+</div>
+<br>
+<div class="section scrollspy z-depth-2 " id="team">
+    <div id="team" class="container">
+     <div class="row">
+      <div class="col s6">
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="img/imagen1.jpg">
+    </div>
+    <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4">Aplicaciones Windows<i class="material-icons right">more_vert</i></span>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Aplicaciones Windows<i class="material-icons right">close</i></span>
+      <p>Elaboración de aplicaciones de escritorio dentro de los entornos de trabajo en un sistema operativo como lo es Windows</p>
+    </div>
+  </div>
+</div>
+ <div class="col s6">
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="img/imagen2.png">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Aplicaciones Android<i class="material-icons right">more_vert</i></span>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Aplicaciones Android<i class="material-icons right">close</i></span>
+      <p>Desarrollo de aplicaciones moviles, con la ayuda de una gran variedad de herramientas orientadas a la programación desde el nivel más bajo.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="col s6">
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="img/imagen3.png">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Diseño Gráfico<i class="material-icons right">more_vert</i></span>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Diseño Gráfico<i class="material-icons right">close</i></span>
+      <p>Elaboración de diseños, maquetados y páginas web, que sirven como medios informativos acerca de los trabajos desarrollados en tu empresa.</p>
+    </div>
+  </div>
+</div>
+<div class="col s6">
+  <div class="card">
+    <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="img/imagen4.jpg">
+    </div>
+    <div class="card-content">
+      <span class="card-title activator grey-text text-darken-4">Servicios SEO<i class="material-icons right">more_vert</i></span>
+    </div>
+    <div class="card-reveal">
+      <span class="card-title grey-text text-darken-4">Servicios SEO<i class="material-icons right">close</i></span>
+      <p>Manejo de servicios SEO, que puedan lograr una busqueda asertiva del giro al cual se dedica la empresa.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+    </div>
+</div>
+
+<br><br><br><br><br><br  >
+    <div class="card-panel  green accent-4">      
+      <h4 class="center-align">Politicas de Privacidad </h4>
+</div>
+<br>
+<div class="section scrollspy" id="App">
+    <div class="container">
+
+ <div class="card">
+           
+           <div class="card-content white darken-1">
+      <span class="card-title activator grey-text text-darken-4">Introducción</span>
+              <p >Nuestra política de privacidad describe como recogemos, guardamos o utilizamos la información que recabamos a través de los diferentes servicios o páginas disponibles en este sitio. Es importante que entienda que información recogemos y como la utilizamos ya que el acceso a este sitio implica la aceptación nuestra política de privacidad.</p>
+            </div>
+            <div class="card-action">
+   <div class="row">
+        <div class="col s4 ">
+                        <a class=" btn-floating  btn modal-trigger" href="#modal1"><i class="fa fa-bug"></i>Cookies</a>
+      </div>
+       <div class="col s4">
+                        <a class="  btn-floating btn modal-trigger" href="#modal2"> <i class="fa fa-globe"></i> Web Beacons</a>
+      </div>
+        <div class="col s4">
+         <a class=" btn-floating btn modal-trigger waves-light" href="#modal3"><i class="fa fa-user-secret"></i>Terceros</a>
+      </div>
+            </div>
+          </div>
+
+  </div>
+</div>
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modal3" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Terceros</h4>
+      <p>En algunos casos, compartimos información sobre los visitantes de este sitio de forma anónima o agregada con terceros como puedan ser anunciantes, patrocinadores o auditores con el único fin de mejorar nuestros servicios. Todas estas tareas de procesamiento serán reguladas según las normas legales y se respetarán todos sus derechos en materia de protección de datos conforme a la regulación vigente.
+Este sitio también puede albergar publicidad propia, de afiliados, o de redes publicitarias.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">cerrar</a>
+    </div>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Cookies</h4>
+      <p>El acceso a este sitio puede implicar la utilización de cookies. Las cookies son pequeñas cantidades de información que se almacenan en el navegador utilizado por cada usuario para que el servidor recuerde cierta información que posteriormente pueda utilizar. Esta información permite identificarle a usted como un usuario concreto y permite guardar sus preferencias personales, así como información técnica como puedan ser visitas o páginas concretas que visite. Aquellos usuarios que no deseen recibir cookies o quieran ser informados antes de que se almacenen en su ordenador, pueden configurar su navegador a tal efecto.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">cerrar</a>
+    </div>
+  </div>
+
+  <div id="modal2" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Web Beacons</h4>
+      <p>Este sitio puede albergar también web beacons (también conocidos por web bugs). Los web beacons suelen ser pequeñas imágenes de un pixel por un pixel, visibles o invisibles colocados dentro del código fuente de las páginas web de un sitio. Los Web beacons sirven y se utilizan de una forma similar a las cookies. Además, los web beacons suelen utilizarse para medir el tráfico de usuarios que visitan una página web y poder sacar un patrón de los usuarios de un sitio.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">cerrar</a>
+    </div>
+  </div >
+
+
+
+<br><br>
+<div  id="pie">
+
+</div>
+<footer class="page-footer " >
+        
+    <div class = "row">
+    <div class="col l4 s12"  >
+        <h5 ><i class="large material-icons white-text">&#xE8D3;</i></h5>
+            <h5 class="white-text">  Quienes Somos</h5>
+            <p class="grey-text text-lighten-4">Somos una empresa dedicada con la sociedad infantil, para un mejor entendimiento entre los alimentos saludables y no saludables.</p>
+          
+          </div>
+          <div class="col l4 s12">
+            <h5> <i class=" large material-icons white-text">&#xE0CF;</i></h5>
+            <h5 class="white-text">Contactanos</h5>
+            <p class="grey-text text-lighten-4">Te gustaría formar parte de nuestro pequeño grupo de desarrollo, mandanos tus datos al siguiente correo: A2Soft12@gmail.com</p>
+            
+          </div>
+           <div class="col l4 s12" >
+            <h5><i class="large material-icons white-text">&#xE03F;</i></h5>
+            <h5 class="white-text">Dirección</h5>
+            <p class="grey-text text-lighten-4">
+                Calle Villa del Rio #22 B
+                Colonia Cuauhtemoc
+                Orizaba, Veracruz C.P. 94733
+                Telefóno: (272)-180-16-46 Grupo de Desarrollo A2 Soft
+            </p>
+            
+          </div>
+          </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2015 Todos los Derechos Reservados al Grupo de Desarrollo A2 Soft.
+        <a class="grey-text text-lighten-4 right" href="https://github.com/Dogfalo/materialize/blob/master/LICENSE"></a>
+        </div>
+      </div>
+    </footer>
+   
     </body>
 </html>
